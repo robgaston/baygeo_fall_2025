@@ -1,0 +1,20 @@
+{
+  "name": "nuxt-map",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "process-data": "node --experimental-modules --experimental-json-modules process-data.js"
+  },
+  "dependencies": {
+    "@turf/turf": "^7.2.0",
+    "maplibre": "^0.0.1-security",
+    "maplibre-gl": "^5.7.3",
+    "nuxt": "^4.1.2",
+    "vue": "latest"
+  }
+}
