@@ -52,4 +52,8 @@ onMounted(() => {
 .map {
   height: 100%;
 }
+
+.hidden {
+  display: none;
+}
 </style>
