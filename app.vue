@@ -3,6 +3,7 @@ import { onMounted, ref } from "vue";
 import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import style from "./map/style.json";
+import neighborhoods from "./map/neighborhoods-with-sites.json";
 
 const attribution = ref();
 const mapContainer = ref();
@@ -11,13 +12,28 @@ onMounted(() => {
   const map = new maplibregl.Map({
     "container": mapContainer.value,
     "style": style,
-    "attributionControl": false
+    "attributionControl": false,
+    "bounds": [
+      -118.65226,
+      33.705553,
+      -118.155705,
+      34.3330508
+    ],
+    "fitBoundsOptions": {
+      "padding": 50,
+      "pitch": 45
+    }
   });
 
   map.addControl(new maplibregl.AttributionControl({
     compact: true,
     customAttribution: attribution.value.innerHTML
   }));
+
+  map.on("load", () => {
+    map.getSource("neighborhoods")
+    .setData(neighborhoods);
+  });
 });
 </script>
 
