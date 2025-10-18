@@ -16,6 +16,7 @@
         },
         "neighborhoods": {
             "type": "geojson",
+            "promoteId": "OBJECTID",
             "data": {}
         }
     },
@@ -3350,7 +3351,19 @@
             "type": "line",
             "source": "neighborhoods",
             "paint": {
-                "line-width": 2
+                "line-width": [
+                    "case",
+                    [
+                        "boolean",
+                        [
+                            "feature-state",
+                            "hover"
+                        ],
+                        false
+                    ],
+                    4,
+                    2
+                ]
             }
         },
         {
@@ -3369,12 +3382,41 @@
                     1000, "rgb(37,37,37)"
                 ],
                 "fill-extrusion-height": [
-                    "*",
+                    "+",
                     [
-                        "get",
-                        "sitesCount"
+                        "*",
+                        [
+                            "get",
+                            "sitesCount"
+                        ],
+                        5
                     ],
-                    5
+                    [
+                        "case",
+                        [
+                            "boolean",
+                            [
+                                "feature-state",
+                                "hover"
+                            ],
+                            false
+                        ],
+                        1000,
+                        0
+                    ]
+                ],
+                "fill-extrusion-base": [
+                    "case",
+                    [
+                        "boolean",
+                        [
+                            "feature-state",
+                            "hover"
+                        ],
+                        false
+                    ],
+                    1000,
+                    0
                 ],
                 "fill-extrusion-opacity": 0.5
             }
